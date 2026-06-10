@@ -1,4 +1,4 @@
-name: syrinx-seg
+name: synapse-seg
 channels:
   - pytorch
   - nvidia
