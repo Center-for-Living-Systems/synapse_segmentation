@@ -1,0 +1,34 @@
+# Run: smp_resnet34 · 3-class · combo loss · annotation-aware sampling
+# ── Data ──────────────────────────────────────────────────────────────────────
+data_dir: /home/lding/lding/data/cara_data/reformrequest
+patch_size: 224
+patches_per_image: 100
+val_image_idx: 3
+seed: 42
+
+# ── Segmentation ──────────────────────────────────────────────────────────────
+binary: false          # 3-class: Background / G / P
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+model: smp_unet
+encoder_name: resnet34
+encoder_weights: imagenet
+base_features: 64
+
+# ── Training ──────────────────────────────────────────────────────────────────
+loss: combo
+dice_weight: 0.5
+
+annotated_fraction: 0.7
+aug_elastic: true
+aug_intensity: true
+
+batch_size: 8
+num_workers: 4
+lr: 1.0e-4
+weight_decay: 1.0e-4
+epochs: 100
+save_every: 10
+
+# ── Output ────────────────────────────────────────────────────────────────────
+output_dir: ./outputs/run05_smp_resnet34_3cls_combo_annaware

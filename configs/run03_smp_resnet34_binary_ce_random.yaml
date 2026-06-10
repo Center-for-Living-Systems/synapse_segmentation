@@ -1,0 +1,32 @@
+# Run 03: smp_resnet34 · binary · CE loss · random sampling · 224px patches
+# ── Data ──────────────────────────────────────────────────────────────────────
+data_dir: /home/lding/lding/data/cara_data/reformrequest
+patch_size: 224
+patches_per_image: 100
+val_image_idx: 3
+seed: 42
+
+# ── Segmentation ──────────────────────────────────────────────────────────────
+binary: true
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+model: smp_unet
+encoder_name: resnet34
+encoder_weights: imagenet
+base_features: 64
+
+# ── Training ──────────────────────────────────────────────────────────────────
+loss: ce
+annotated_fraction: 0.0
+aug_elastic: false
+aug_intensity: false
+
+batch_size: 8
+num_workers: 4
+lr: 1.0e-4
+weight_decay: 1.0e-4
+epochs: 100
+save_every: 10
+
+# ── Output ────────────────────────────────────────────────────────────────────
+output_dir: ./outputs/run03_smp_resnet34_binary_ce_random

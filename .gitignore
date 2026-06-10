@@ -1,0 +1,30 @@
+# local scratch folder (not for upload)
+local/
+
+# outputs and logs
+outputs/
+logs/
+
+# model checkpoints
+*.pth
+
+# generated files
+*.pptx
+*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter
+.ipynb_checkpoints/
+
+# environment
+.env
+*.egg-info/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

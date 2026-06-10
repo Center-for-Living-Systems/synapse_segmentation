@@ -1,0 +1,34 @@
+# ── Data ──────────────────────────────────────────────────────────────────────
+data_dir: /home/lding/lding/data/cara_data/reformrequest
+patch_size: 224
+patches_per_image: 100
+val_image_idx: 3
+seed: 42
+
+# ── Binary segmentation ───────────────────────────────────────────────────────
+# Merges G and P into a single "Cell" class → 2-class output: Background vs Cell
+binary: true
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+model: smp_unet
+encoder_name: resnet34
+encoder_weights: imagenet
+base_features: 64            # used only when model: custom_unet
+
+# ── Training ──────────────────────────────────────────────────────────────────
+loss: combo
+dice_weight: 0.5
+
+annotated_fraction: 0.7
+aug_elastic: true
+aug_intensity: true
+
+batch_size: 8
+num_workers: 4
+lr: 1.0e-4
+weight_decay: 1.0e-4
+epochs: 100
+save_every: 10
+
+# ── Output ────────────────────────────────────────────────────────────────────
+output_dir: ./outputs/run04_smp_resnet34_binary_combo_annaware

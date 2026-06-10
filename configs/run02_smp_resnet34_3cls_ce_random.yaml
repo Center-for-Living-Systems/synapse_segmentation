@@ -1,0 +1,33 @@
+# ── Data ──────────────────────────────────────────────────────────────────────
+data_dir: /home/lding/lding/data/cara_data/reformrequest
+patch_size: 224          # 224 matches ImageNet pretraining scale
+patches_per_image: 100   # random patches sampled per TIF file
+val_image_idx: 3         # index of the image held out for validation (0-based); others are train
+seed: 42
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+# Options:
+#   model: custom_unet              — our from-scratch UNet (base_features controls width)
+#   model: smp_unet                 — segmentation-models-pytorch UNet with pretrained encoder
+model: smp_unet
+encoder_name: resnet34       # resnet34 | resnet50 | efficientnet-b0 | mobilenet_v2
+encoder_weights: imagenet    # imagenet | null (random init)
+base_features: 64            # used only when model: custom_unet
+
+# ── Training ──────────────────────────────────────────────────────────────────
+loss: combo          # ce | combo  (combo = weighted CE + Dice)
+dice_weight: 0.5     # Dice fraction in combo loss
+
+annotated_fraction: 0.7   # fraction of patches guaranteed to contain annotated pixels
+aug_elastic: true         # elastic deformation augmentation
+aug_intensity: true       # random brightness/contrast jitter
+
+batch_size: 8
+num_workers: 4
+lr: 1.0e-4
+weight_decay: 1.0e-4
+epochs: 100
+save_every: 10           # save a checkpoint every N epochs
+
+# ── Output ────────────────────────────────────────────────────────────────────
+output_dir: ./outputs/run02_smp_resnet34_3cls_ce_random

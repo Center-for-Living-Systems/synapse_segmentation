@@ -1,0 +1,26 @@
+name: syrinx-seg
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  # deep learning
+  - pytorch=2.5.1
+  - torchvision=0.20.1
+  - pytorch-cuda=12.4          # remove or change to 'cpuonly' if no GPU
+  # image I/O
+  - tifffile=2025.5.10
+  - pillow=12.0.0
+  # numerics / plotting
+  - numpy=2.2.6
+  - matplotlib=3.10.8
+  - scipy=1.15.2
+  # config
+  - pyyaml=6.0.3
+  # ImageJ ROI parsing (pip-only)
+  - pip
+  - pip:
+      - roifile==2025.12.12
+      - segmentation-models-pytorch==0.5.0
